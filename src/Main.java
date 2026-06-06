@@ -1,17 +1,41 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import order.Order;
+import order.Product;
+import order.User;
+import shoppingcartmodule.CreditCard;
+import shoppingcartmodule.PaymentMethod;
+import shoppingcartmodule.ShoppingCart;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Ctrl+1 with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Alt+Shift+X or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        User user = new User("Kartik Shinde","kartikkshinde0103@gmail.com","12345");
 
-            // Press Alt+Shift+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+Shift+B.
-            System.out.println("i = " + i);
+        ShoppingCart cart = new ShoppingCart();
+
+        Product laptop = new Product("Asus Laptop","A High performance laptop",56500.0,20);
+        Product headphone = new Product("Boat Headphone","High performance headphone",3200,20);
+
+        cart.addProduct(laptop,2);
+        cart.addProduct(headphone,1);
+
+        cart.displayCart();
+
+        cart.decrementProduct(laptop.getId(), 1);
+        cart.displayCart();
+
+        Order order = new Order(user);
+        order.addProduct(laptop);
+        order.addProduct(headphone);
+
+        PaymentMethod method = new CreditCard("ICICI card","Kartik Shinde","29-05-2029","23423");
+        boolean success = method.processPayement(order.calculateTotalCost());
+
+        if (success) {
+            order.markAsPaid();
+            System.out.println("Order paid successfully!");
+        } else {
+            System.out.println("Payment failed. Please try another method.");
         }
+
     }
 }
