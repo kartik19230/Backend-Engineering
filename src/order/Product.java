@@ -55,4 +55,12 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    public synchronized boolean reduceStock(int quantity){
+        if (this.stock >= quantity){
+            this.stock -= quantity;
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,6 +1,8 @@
-package shoppingcartmodule;
+package order;
 
-public class CreditCard implements PaymentMethod{
+import order.PaymentMethod;
+
+public class CreditCard implements PaymentMethod {
 
     private String cardName;
     private String cardHolderName;
