@@ -18,6 +18,10 @@ public class OrderItem {
         return quantity;
     }
 
+    public void decrementQuantity(int amount){
+        quantity -= amount;
+    }
+
     public double getTotalPrice(){
         return product.getPrice() * quantity;
     }

@@ -1,6 +1,5 @@
 import order.Order;
 import order.Product;
-import order.User;
 import shoppingcartmodule.ShoppingCart;
 
 public class Main {
@@ -20,6 +19,8 @@ public class Main {
 
         Order order1 = new Order();
         order1.addItem(mobile,2);
+        order1.displayOrder();
+        order1.removeItem(mobile,1);
         order1.displayOrder();
     }
 }

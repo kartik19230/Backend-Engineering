@@ -38,6 +38,25 @@ public class Order {
         return false;
     }
 
+    public boolean removeItem(Product product,int quantity){
+        if (status != OrderStatus.PENDING){
+            System.out.println("Order cannot be modify");
+            return false;
+        } else if (product.getStock() <  quantity) {
+            items.remove(product);
+            return true;
+        }else if (product.getStock() >  quantity){
+            for (OrderItem item : items){
+                if (item.getProduct().getName().equals(product.getName())){
+                    item.decrementQuantity(quantity);
+                }
+            }
+            recalculateTotal();
+            return true;
+        }
+        return false;
+    }
+
     private void recalculateTotal(){
         this.totalAmount = items.stream()
                 .mapToDouble(OrderItem::getTotalPrice)
